@@ -1,0 +1,46 @@
+<div class="flex flex-col h-100 w-100">
+  <div class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <h1 class="font-bold text-xl bg-gradient-to-r from-gray-900 to-blue-500 text-white p-2">
+          Kanban
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex flex-col flex-grow min-w-0 min-h-0">
+  <div class=" pt-2 pl-4 bg-white opacity-50">
+    <p class="text-lg font-bold text-black my-1">
+      Task Board
+    </p>
+  </div>
+
+  <div class="flex flex-grow overflow-x-auto">
+    <div class="flex flex-grow bg-lime-200">
+      <div class="flex flex-col flex-grow basis-0 m-w-[300px] m-12 p-6 bg-white border-r-4">
+        <div class="text-xl font-bold text-uppercase mb-5">
+          New
+        </div>
+        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
+          (cdkDropListDropped)="drop($event)" class="flex-grow">
+          <div cdkDrag class="flex py-4 px-3 bg-red-400 border-b-2 border-r-4 shadow-md mb-4" *ngFor="let item of todo">
+            {{item}}
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col flex-grow basis-0 m-w-[300px] m-12 p-6 bg-white border-r-4">
+        <div class="text-xl font-bold text-uppercase mb-5">
+          In-process
+        </div>
+        <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
+          (cdkDropListDropped)="drop($event)" class="flex-grow">
+          <div cdkDrag class="flex py-4 px-3 bg-red-400 border-b-2 border-r-4 shadow-md mb-4" *ngFor="let item of done">
+            {{item}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
